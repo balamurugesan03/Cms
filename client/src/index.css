@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-300: #fdba74;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+  --color-brand-900: #7c2d12;
+  --animate-fade-in: fade-in 0.18s ease-out;
+  --animate-slide-in: slide-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pop: pop 0.16s ease-out;
+}
+
+@keyframes fade-in { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slide-in { from { transform: translateX(100%) } to { transform: translateX(0) } }
+@keyframes pop { from { opacity: 0; transform: scale(.97) translateY(4px) } to { opacity: 1; transform: none } }
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body { @apply bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200; font-feature-settings: "cv11", "ss01"; }
+  ::selection { @apply bg-brand-200 text-brand-900; }
+  * { scrollbar-width: thin; scrollbar-color: rgb(148 163 184 / .4) transparent; }
+  input[type="number"]::-webkit-inner-spin-button { opacity: .4; }
+}
+
+@layer components {
+  .card { @apply rounded-xl border border-slate-200/80 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)] dark:border-slate-800 dark:bg-slate-900; }
+  .input {
+    @apply h-9 w-full rounded-lg border border-slate-300 bg-white px-3 text-sm text-slate-800 shadow-sm outline-none transition
+      placeholder:text-slate-400 focus:border-brand-500 focus:ring-3 focus:ring-brand-500/15 disabled:bg-slate-50 disabled:text-slate-500
+      dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:focus:border-brand-500 dark:disabled:bg-slate-800/60;
+  }
+  textarea.input { @apply h-auto py-2; }
+  .label { @apply mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400; }
+  .th { @apply whitespace-nowrap px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400; }
+  .td { @apply whitespace-nowrap px-4 py-3 text-sm; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .print-area { box-shadow: none !important; border: 0 !important; margin: 0 !important; padding: 0 !important; }
+  main { padding: 0 !important; }
+  @page { margin: 14mm; }
+}
