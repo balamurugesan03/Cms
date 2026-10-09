@@ -12,7 +12,7 @@ npm run seed            # loads demo data (wipes the buildpro database)
 npm run dev             # API on :5000, web app on http://localhost:5173
 ```
 
-Production: `npm run build && npm start` — the API serves the built app on http://localhost:5000.
+Production (served under `/cms`): see **[DEPLOY.md](DEPLOY.md)** — live at https://unizova.com/cms/
 
 Config lives in `server/.env` (copy from `server/.env.example`; **change `JWT_SECRET`**).
 

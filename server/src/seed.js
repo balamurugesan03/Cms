@@ -18,6 +18,10 @@ const day = (offset) => {
 const pick = (arr, i) => arr[i % arr.length];
 
 async function run() {
+  if (process.env.NODE_ENV === 'production' && !process.argv.includes('--force')) {
+    console.error('✖ Seeding wipes the database. Refusing in production (pass --force to override).');
+    process.exit(1);
+  }
   await mongoose.connect(process.env.MONGO_URI);
   console.log('Connected. Clearing database…');
   await mongoose.connection.db.dropDatabase();

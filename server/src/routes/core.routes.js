@@ -95,7 +95,7 @@ const upload = multer({
 
 router.post('/uploads', upload.array('files', 10), (req, res) => {
   res.status(201).json({
-    files: (req.files || []).map((f) => ({ url: `/uploads/${f.filename}`, name: f.originalname, mimeType: f.mimetype, size: f.size })),
+    files: (req.files || []).map((f) => ({ url: `${process.env.BASE_PATH || ''}/uploads/${f.filename}`, name: f.originalname, mimeType: f.mimetype, size: f.size })),
   });
 });
 

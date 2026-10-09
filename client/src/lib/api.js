@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'sonner';
 
-export const api = axios.create({ baseURL: '/api' });
+export const api = axios.create({ baseURL: `${import.meta.env.BASE_URL}api` });
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');

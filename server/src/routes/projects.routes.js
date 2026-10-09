@@ -163,7 +163,7 @@ router.use(
     scope: scopes.byProject,
     sanitize: (body, req, isNew) => (isNew ? { ...body, uploadedBy: req.user._id } : body),
     beforeDelete: async (doc) => {
-      if (doc.fileUrl?.startsWith('/uploads/')) {
+      if (doc.fileUrl?.includes('/uploads/')) {
         const file = path.resolve('uploads', path.basename(doc.fileUrl));
         fs.promises.unlink(file).catch(() => {});
       }
