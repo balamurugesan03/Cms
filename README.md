@@ -9,6 +9,7 @@ Requirements: Node 20+ and MongoDB running locally (`mongodb://127.0.0.1:27017`)
 ```bash
 npm run install:all     # installs root, server and client deps
 npm run seed            # loads demo data (wipes the buildpro database)
+npm run reset           # erases all data, keeps Super Admin login(s)
 npm run dev             # API on :5000, web app on http://localhost:5173
 ```
 
